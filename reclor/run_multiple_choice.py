@@ -345,7 +345,6 @@ def evaluate(args, model, tokenizer, prefix="", test=False):
                 }
                 outputs = model(**inputs)
                 tmp_eval_loss, logits = outputs[:2]
-
                 eval_loss += tmp_eval_loss.mean().item()
             nb_eval_steps += 1
             if preds is None:
@@ -441,6 +440,7 @@ def load_and_cache_examples(args, task, tokenizer, evaluate=False, test=False):
     # Convert to Tensors and build dataset
     all_input_ids = torch.tensor(select_field(features, "input_ids"), dtype=torch.long)
     all_input_mask = torch.tensor(select_field(features, "input_mask"), dtype=torch.long)
+
     all_segment_ids = torch.tensor(select_field(features, "segment_ids"), dtype=torch.long)
     all_label_ids = torch.tensor([f.label for f in features], dtype=torch.long)
 
@@ -487,7 +487,6 @@ def main():
         required=True,
         help="The output directory where the model predictions and checkpoints will be written.",
     )
-
     # Other parameters
     parser.add_argument(
         "--config_name", default="", type=str, help="Pretrained config name or path if not the same as model_name"
@@ -520,7 +519,6 @@ def main():
     parser.add_argument(
         "--do_lower_case", action="store_true", help="Set this flag if you are using an uncased model."
     )
-
     parser.add_argument("--per_gpu_train_batch_size", default=8, type=int, help="Batch size per GPU/CPU for training.")
     parser.add_argument(
         "--per_gpu_eval_batch_size", default=8, type=int, help="Batch size per GPU/CPU for evaluation."
@@ -665,7 +663,6 @@ def main():
         config=config,
         cache_dir=args.cache_dir if args.cache_dir else None,
     )
-
     if args.local_rank == 0:
         torch.distributed.barrier()  # Make sure only the first process in distributed training will download model & vocab
 
