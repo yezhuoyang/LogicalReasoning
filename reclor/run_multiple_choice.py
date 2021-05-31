@@ -40,6 +40,10 @@ from transformers import (
     XLNetConfig,
     XLNetForMultipleChoice,
     XLNetTokenizer,
+    ElectraConfig,
+    ElectraModel,
+    ElectraForMultipleChoice,
+    ElectraTokenizer,
     get_linear_schedule_with_warmup,
 )
 from utils_multiple_choice import convert_examples_to_features, processors
@@ -53,14 +57,17 @@ except ImportError:
 
 logger = logging.getLogger(__name__)
 
+ALL_MODELS = "Fuck"
+'''
 ALL_MODELS = sum(
-    (tuple(conf.pretrained_config_archive_map.keys()) for conf in (BertConfig, XLNetConfig, RobertaConfig)), ()
+    (tuple(conf.pretrained_config_archive_map.keys()) for conf in (BertConfig, XLNetConfig, RobertaConfig,ElectraConfig)), ()
 )
-
+'''
 MODEL_CLASSES = {
     "bert": (BertConfig, BertForMultipleChoice, BertTokenizer),
     "xlnet": (XLNetConfig, XLNetForMultipleChoice, XLNetTokenizer),
     "roberta": (RobertaConfig, RobertaForMultipleChoice, RobertaTokenizer),
+    "electra": (ElectraConfig, ElectraForMultipleChoice, ElectraTokenizer)
 }
 
 

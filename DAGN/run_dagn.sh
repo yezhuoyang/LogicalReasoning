@@ -9,7 +9,7 @@ export MODEL_VERSION=2132
 export GNN_VERSION=GCN
 export SAVE_DIR=dagn
 
-CUDA_VISIBLE_DEVICES=0 python run_multiple_choice.py \
+CUDA_VISIBLE_DEVICES=0 python3 run_multiple_choice.py \
     --disable_tqdm \
     --task_name $TASK_NAME \
     --model_type $MODEL_TYPE \
@@ -34,7 +34,7 @@ CUDA_VISIBLE_DEVICES=0 python run_multiple_choice.py \
     --proj_lr 5e-6 \
     --num_train_epochs 10 \
     --output_dir Checkpoints/$TASK_NAME/${SAVE_DIR} \
-    --fp16 \
+
     --logging_steps 200 \
     --save_steps 200 \
     --adam_epsilon 1e-6 \

@@ -18,7 +18,7 @@ CUDA_VISIBLE_DEVICES=0 python3 run_multiple_choice.py \
     --learning_rate 1e-05 \
     --num_train_epochs 10.0 \
     --output_dir Checkpoints/$TASK_NAME/${MODEL_NAME} \
-    --fp16 \
+    #--fp16 \
     --logging_steps 200 \
     --save_steps 200 \
     --adam_betas "(0.9, 0.98)" \
